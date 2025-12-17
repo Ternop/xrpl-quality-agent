@@ -1,0 +1,27 @@
+name: "core-health"
+steps:
+  - name: "server_info returns build_version"
+    method: "server_info"
+    params: {}
+    invariants:
+      - type: "status_ok"
+      - type: "jsonpath_exists"
+        path: "result.info.build_version"
+
+  - name: "fee returns base_fee"
+    method: "fee"
+    params: {}
+    invariants:
+      - type: "status_ok"
+      - type: "jsonpath_exists"
+        path: "result.drops.base_fee"
+
+  - name: "ledger validated"
+    method: "ledger"
+    params:
+      ledger_index: "validated"
+    invariants:
+      - type: "status_ok"
+      - type: "equals"
+        path: "result.validated"
+        value: true
