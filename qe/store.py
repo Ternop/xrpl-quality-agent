@@ -28,12 +28,14 @@ CREATE TABLE IF NOT EXISTS steps (
 );
 """
 
+
 @dataclass(frozen=True)
 class RunRow:
     id: int
     started_at: float
     endpoint: str
     scenario_name: str
+
 
 class Store:
     def __init__(self, db_path: str):

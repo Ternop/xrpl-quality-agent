@@ -1,9 +1,7 @@
 from __future__ import annotations
 
 import asyncio
-import time
 from datetime import datetime
-from typing import Optional
 
 import typer
 from rich.console import Console
@@ -19,10 +17,12 @@ from qe.summarize import heuristic_summary, llm_summary
 app = typer.Typer(add_completion=False)
 console = Console()
 
+
 @app.command()
 def mock_server(host: str = "127.0.0.1", port: int = 7000):
     """Run a local mock JSON-RPC server."""
     run_mock(host=host, port=port)
+
 
 @app.command()
 def run(
@@ -55,6 +55,7 @@ def run(
     asyncio.run(_run())
     console.print(f"Saved run_id={run_id} to {db}")
     store.close()
+
 
 @app.command()
 def report(
@@ -115,8 +116,10 @@ def report(
 
     store.close()
 
+
 def main():
-	app()
-    
+    app()
+
+
 if __name__ == "__main__":
     app()

@@ -3,11 +3,13 @@ from __future__ import annotations
 import os
 from dataclasses import dataclass
 
+
 @dataclass(frozen=True)
 class OpenAIConfig:
     api_key: str | None
     base_url: str
     model: str
+
 
 def openai_config() -> OpenAIConfig:
     return OpenAIConfig(

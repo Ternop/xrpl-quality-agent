@@ -1,12 +1,9 @@
 from __future__ import annotations
 
-import os
-from typing import Any
-
 import httpx
-from rich.text import Text
 
 from qe.config import openai_config
+
 
 def heuristic_summary(run: dict) -> str:
     steps = run["steps"]
@@ -22,6 +19,7 @@ def heuristic_summary(run: dict) -> str:
         for e in errors[:5]:
             lines.append(f"- {e['step_name']}: {e.get('error')}")
     return "\n".join(lines)
+
 
 async def llm_summary(run: dict) -> str:
     cfg = openai_config()
